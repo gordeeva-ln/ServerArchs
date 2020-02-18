@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="dummyChat.Client.main" target="1.8" />
+      <module name="dummyChat.Client.test" target="1.8" />
+      <module name="dummyChat.Common.main" target="1.8" />
+      <module name="dummyChat.Common.test" target="1.8" />
+      <module name="dummyChat.Main.main" target="1.8" />
+      <module name="dummyChat.Main.test" target="1.8" />
+      <module name="dummyChat.Server.main" target="1.8" />
+      <module name="dummyChat.Server.test" target="1.8" />
+      <module name="ru.ifmo.java.dummyChat.main" target="1.8" />
+      <module name="ru.ifmo.java.dummyChat.test" target="1.8" />
+      <module name="ru.ifmo.java.RMI.main" target="1.8" />
+      <module name="ru.ifmo.java.RMI.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

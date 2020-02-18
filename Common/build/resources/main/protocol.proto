@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package ru.ifmo.java.chat.protocol;
+
+message SortRequest {
+    oneof request {
+        SendSortRequest sendSortRequest = 1;
+        Dead dead = 2;
+    }
+}
+
+message SendSortRequest {
+    int32 count = 1;
+    repeated int32 list = 2;
+}
+
+message SendSortResponse {
+    int32 count = 1;
+    repeated int32 list = 2;
+
+    int64 sort = 3;
+    int64 all = 4;
+}
+
+message Dead {}

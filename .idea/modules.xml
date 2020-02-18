@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/dummyChat.Client.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/dummyChat.Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/dummyChat.Client.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/dummyChat.Client.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/dummyChat.Client.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/dummyChat.Client.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Common/dummyChat.Common.iml" filepath="$PROJECT_DIR$/.idea/modules/Common/dummyChat.Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Common/dummyChat.Common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Common/dummyChat.Common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Common/dummyChat.Common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Common/dummyChat.Common.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Main/dummyChat.Main.iml" filepath="$PROJECT_DIR$/.idea/modules/Main/dummyChat.Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Main/dummyChat.Main.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Main/dummyChat.Main.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Main/dummyChat.Main.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Main/dummyChat.Main.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/dummyChat.Server.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/dummyChat.Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/dummyChat.Server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/dummyChat.Server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/dummyChat.Server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/dummyChat.Server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ru.ifmo.java.dummyChat.iml" filepath="$PROJECT_DIR$/.idea/modules/ru.ifmo.java.dummyChat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ru.ifmo.java.dummyChat.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ru.ifmo.java.dummyChat.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ru.ifmo.java.dummyChat.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ru.ifmo.java.dummyChat.test.iml" />
+    </modules>
+  </component>
+</project>

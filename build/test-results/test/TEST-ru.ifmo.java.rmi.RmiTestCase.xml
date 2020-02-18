@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.ifmo.java.rmi.RmiTestCase" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-01-21T22:49:19" hostname="DESKTOP-GB5HTIL" time="0.028">
+  <properties/>
+  <testcase name="task1" classname="ru.ifmo.java.rmi.RmiTestCase" time="0.011"/>
+  <testcase name="task2" classname="ru.ifmo.java.rmi.RmiTestCase" time="0.004"/>
+  <testcase name="task3" classname="ru.ifmo.java.rmi.RmiTestCase" time="0.013"/>
+  <system-out><![CDATA[class java.io.FileNotFoundException
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

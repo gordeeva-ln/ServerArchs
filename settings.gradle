@@ -1,0 +1,5 @@
+rootProject.name = 'dummyChat'
+include 'Common'
+include 'Client'
+include 'Server'
+include 'Main'
