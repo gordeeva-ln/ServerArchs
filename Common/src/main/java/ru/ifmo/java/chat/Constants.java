@@ -3,12 +3,12 @@ package ru.ifmo.java.chat;
 public class Constants {
     public static final int PORT_1 = 8080;
     public static final String HOST_1 = "localhost";
-    public static final int PORT_2 = 8081;
+    public static final int PORT_2 = 8080;
     public static final String HOST_2 = "localhost";
-    public static final int PORT_3 = 8081;
+    public static final int PORT_3 = 8080;
     public static final String HOST_3 = "localhost";
 
-    public static final int POOL_SIZE = 10;
+    public static final int POOL_SIZE = 2;
 
     private Constants() {}
 

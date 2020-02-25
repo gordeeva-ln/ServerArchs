@@ -40,11 +40,11 @@ public class SimpleGUI extends JFrame{
     private JTextField stepValue = new JTextField("1", 5);
 
     private JLabel labelN = new JLabel("Input N:");
-    private JTextField nValue = new JTextField("1", 5);
+    private JTextField nValue = new JTextField("10", 5);
     private JLabel labelM = new JLabel("Input M:");
-    private JTextField mValue = new JTextField("1", 5);
+    private JTextField mValue = new JTextField("10", 5);
     private JLabel labelD = new JLabel("Input delta:");
-    private JTextField deltaValue = new JTextField("1", 5);
+    private JTextField deltaValue = new JTextField("10", 5);
 
     private JCheckBox check = new JCheckBox("Check", false);
 
@@ -126,6 +126,7 @@ public class SimpleGUI extends JFrame{
                 n = Integer.parseInt(nValue.getText());
                 m = Integer.parseInt(mValue.getText());
                 delta = Integer.parseInt(deltaValue.getText());
+                //System.out.println("Delta " + delta);
             } catch (NumberFormatException e) {
                 errorMessage += e.getMessage() + "\n";
                 return;
@@ -135,12 +136,16 @@ public class SimpleGUI extends JFrame{
 
                 }
             }
+            int ar = (architecture1.isSelected() ? 1 : (architecture2.isSelected() ? 2 : 3));
+            char param = (parameter1.isSelected() ? 'N' : (parameter2.isSelected() ? 'M' : 'D'));
+
             try {
                 Map<Integer, Double[]> result = new App().run(x, min, max, step, n, m, delta,
-                        (architecture1.isSelected() ? 1 : (architecture2.isSelected() ? 2 : 3)),
-                        (parameter1.isSelected() ? 'N' : (parameter2.isSelected() ? 'M' : 'D')));
+                        ar,
+                        param);
                 drawPlots(result, min, max, step);
-                writeFiles(result, x, min, max, step, n, m, delta );
+
+                writeFiles(result, x, min, max, step, n, m, delta, ar, param);
             }catch (IOException | InterruptedException e) {
                 System.out.println("Some problems while client or server work\n" + e);
             }
@@ -223,16 +228,18 @@ public class SimpleGUI extends JFrame{
 
     }
 
-    private void writeFiles(Map<Integer, Double[]> result, int x, int min, int max, int step, int n, int m, int delta) {
+    private void writeFiles(Map<Integer, Double[]> result, int x,
+                            int min, int max, int step, int n, int m, int delta, int ar, char param) {
         for (int i : result.keySet()) {
-            System.out.println(i);
-            try (FileWriter writer = new FileWriter("values " + i + ".txt", false)) {
+            //System.out.println(i);
+            try (FileWriter writer = new FileWriter("results/res_" + ar + "_" + param + "_" + i + ".txt", false)) {
                 // write info in first line with spaces
-                writer.write(x + " " + min + " " + max + " " + step + " " + n + " " + m + " " + delta);
+                writer.write(x + " " + min + " " + max + " " + step + " " + n + " " + m + " " + delta + '\n');
                 // write values
                 Double[] values = result.get(i);
-                for (double d : values) {
-                    writer.write(d + "\n");
+                for (Double d : values) {
+                    //System.out.println("v " + d);
+                    writer.write(d.toString() + '\n');
                 }
                 writer.flush();
             } catch (IOException e) {

@@ -8,8 +8,13 @@ import ru.ifmo.java.chat.client.Client;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class App {
     public Map<Integer, Double[]> run(int x, int min, int max, int step, int n, int m, int delta, int ar, char param) throws IOException, InterruptedException {
@@ -52,13 +57,32 @@ public class App {
         return res;
     }
 
-    private double[] session(int x, int delta, int n, int m, int ar) throws IOException, InterruptedException{
+    private double[] session(int x, int delta, int n, int m, int ar) throws IOException{
+        /*основная сессия работы клиентов с настроенными параметрами*/
         double[] means = new double[3];
+        Client[] clients = new Client[m];
+        final ExecutorService pool = Executors.newFixedThreadPool(m);
+        List<Future> futures = new ArrayList<>();
         for (int i = 0; i < m; i++) {
-            double[] next = new Client().run(x, delta, n, ar);
-            for (int j = 0; j < 3; j++) means[j] += next[j];
+            clients[i] = new Client(x, delta, m, n, ar);
+            futures.add(pool.submit(clients[i]));
+            //System.out.println("Next Client start " + i + clients[i]);
         }
+
+
+        int i = 0;
+        while (i < m) {
+            if (!futures.get(i).isDone()) continue;
+            for (int j = 0; j < 3; j++) {
+                means[j] += clients[i].stat[j];
+            }
+            i++;
+        }
+
+        //pool.shutdown();
+
         for (int j = 0; j < 3; j++) means[j] /= m;
+
         return means;
     }
 }

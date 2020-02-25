@@ -11,18 +11,23 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class Client {
+public class Client implements Runnable{
     private Socket socket = null;
     private OutputStream output;
     private InputStream input;
     private Short port = 0;
     private String host = "";
     private final Random random = new Random();
+    public double[] stat;
+    private int x, delta, m, n, ar;
 
-    public double[] run(int x, int delta, int n, int ar) throws IOException, InterruptedException {
-        /* Клиент первм делом начинает свою работу с сервром и созадет подключение с теми настройками,
-         которые прописаны в Constants*/
-        long start = System.currentTimeMillis();
+    public Client(int x, int delta, int m, int n, int ar) throws IOException{
+        /* при инициализации клиента он получает постоянное соединение, но пока не отсылает запросы*/
+        this.x = x;
+        this.delta = delta;
+        this.m = m;
+        this.n = n;
+        this.ar = ar;
         switch (ar) {
             case 1:
                 port = Constants.PORT_1;
@@ -41,26 +46,59 @@ public class Client {
         socket = new Socket(host, port);
         output = socket.getOutputStream();
         input = socket.getInputStream();
-        long timeSort = 0, timeAll = 0;
+
+        /*так как сервер ничего не знает о клиентах и приложениях, то при инициализации кадого клиента отправлеям
+         какое количество клиентов должен ждать сервер, чтобы начать их обработку*/
+        Protocol.SortRequest request = Protocol.SortRequest.newBuilder()
+                .setSendCountRequest(Protocol.SendCountRequest.newBuilder()
+                        .setClientCount(m).build()).build();
+        if (ar == 3) sendRequest3(request);
+        else sendRequest(request);
+    }
+    @Override
+    public void run() {
+        /* Это основной код клиента, у него уже есть сокет, через который он общается с сервером и умирает*/
+        long start = System.currentTimeMillis();
+        long timeSort = 0, timeAll = 0, xx = x;
         try {
             /*отсылает х запросов с промежутком в delta*/
             for (int i = 0; i < x; i++) {
+                //System.out.println("prosess sort " + i);
                 List result = processSort(n, ar);
+                //System.out.println("prosess sort " + i + this);
                 timeSort += (long) result.get(n);
                 timeAll += (long) result.get(n + 1);
+                xx = (long)result.get(n + 2); // каждый раз обновляется, зато последний вариант - истиный
+                //System.out.println("All" + timeAll + " " + timeSort + " " + xx);
+
                 TimeUnit.MILLISECONDS.sleep(delta);
             }
+
+            //System.out.println("All" + this);
+
+
+        } catch (IOException e) {
+            System.out.println("Prosess error in client " + e.getMessage());
+        }catch (InterruptedException ex) {
+            System.out.println("While sleep exception " + ex.getMessage());
         } finally {
-            socket.close();
+            try {
+                socket.close();
+                input.close();
+                output.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         long finish = System.currentTimeMillis();
         long timeConsumedMillis = finish - start;
-        double[] stat = new double[3];
-        stat[0] = (double) timeSort / x;
-        stat[1] = (double) timeAll / x;
-        stat[2] = (double) timeConsumedMillis / x;
-
-        return stat;
+        stat = new double[3];
+        stat[0] = (double) timeSort / xx;
+        stat[1] = (double) timeAll / xx;
+        stat[2] = (double) timeConsumedMillis / xx;
+        //System.out.println("Rs" + timeAll + " " + xx);
+        //System.out.println("Stat ready " + stat);
+        //return stat;
     }
 
     private List<Object> resutFromResponse(Protocol.SendSortResponse response) {
@@ -71,6 +109,7 @@ public class Client {
 
         result.add(response.getSort());
         result.add(response.getAll());
+        result.add(response.getReqs());
         return result;
     }
     private List<Object> processSort(int n, int ar) throws IOException{
@@ -87,6 +126,7 @@ public class Client {
         if (ar == 3) sendRequest3(request);
         else sendRequest(request);
 
+        //System.out.println("Send req ok");
         if (ar == 3) return receiveSendSortResponse3();
         return receiveSendSortResponse();
     }
@@ -98,10 +138,13 @@ public class Client {
     }
 
     private List<Object> receiveSendSortResponse3() throws IOException{
+        //System.out.println("try receive");
         DataInputStream data = new DataInputStream(input);
         int size3 = data.readInt();
+        //System.out.println("int receive " + size3);
         byte[] array = new byte[size3];
         data.readFully(array);
+        //System.out.println("receive ok");
         Protocol.SendSortResponse response = Protocol.SendSortResponse.parseFrom(array);
         return resutFromResponse(response);
     }
@@ -111,9 +154,10 @@ public class Client {
     }
     private void sendRequest3(Protocol.SortRequest request) throws IOException {
         // сначала пишем размер сообщения, а потом уже его отправляем
+        DataOutputStream data = new DataOutputStream(output);
         byte[] sizeBytes =  ByteBuffer.allocate(4).putInt(request.getSerializedSize()).array();
-        output.write(sizeBytes);
+        data.write(sizeBytes);
         request.writeTo(output);
-        output.flush();
+        data.flush();
     }
 }

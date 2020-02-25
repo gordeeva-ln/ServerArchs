@@ -34,17 +34,32 @@ public final class Protocol {
     ru.ifmo.java.chat.protocol.Protocol.SendSortRequestOrBuilder getSendSortRequestOrBuilder();
 
     /**
-     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+     * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+     * @return Whether the sendCountRequest field is set.
+     */
+    boolean hasSendCountRequest();
+    /**
+     * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+     * @return The sendCountRequest.
+     */
+    ru.ifmo.java.chat.protocol.Protocol.SendCountRequest getSendCountRequest();
+    /**
+     * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+     */
+    ru.ifmo.java.chat.protocol.Protocol.SendCountRequestOrBuilder getSendCountRequestOrBuilder();
+
+    /**
+     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
      * @return Whether the dead field is set.
      */
     boolean hasDead();
     /**
-     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
      * @return The dead.
      */
     ru.ifmo.java.chat.protocol.Protocol.Dead getDead();
     /**
-     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
      */
     ru.ifmo.java.chat.protocol.Protocol.DeadOrBuilder getDeadOrBuilder();
 
@@ -110,8 +125,22 @@ public final class Protocol {
               break;
             }
             case 18: {
-              ru.ifmo.java.chat.protocol.Protocol.Dead.Builder subBuilder = null;
+              ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.Builder subBuilder = null;
               if (requestCase_ == 2) {
+                subBuilder = ((ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_).toBuilder();
+              }
+              request_ =
+                  input.readMessage(ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_);
+                request_ = subBuilder.buildPartial();
+              }
+              requestCase_ = 2;
+              break;
+            }
+            case 26: {
+              ru.ifmo.java.chat.protocol.Protocol.Dead.Builder subBuilder = null;
+              if (requestCase_ == 3) {
                 subBuilder = ((ru.ifmo.java.chat.protocol.Protocol.Dead) request_).toBuilder();
               }
               request_ =
@@ -120,7 +149,7 @@ public final class Protocol {
                 subBuilder.mergeFrom((ru.ifmo.java.chat.protocol.Protocol.Dead) request_);
                 request_ = subBuilder.buildPartial();
               }
-              requestCase_ = 2;
+              requestCase_ = 3;
               break;
             }
             default: {
@@ -161,7 +190,8 @@ public final class Protocol {
         implements com.google.protobuf.Internal.EnumLite,
             com.google.protobuf.AbstractMessage.InternalOneOfEnum {
       SENDSORTREQUEST(1),
-      DEAD(2),
+      SENDCOUNTREQUEST(2),
+      DEAD(3),
       REQUEST_NOT_SET(0);
       private final int value;
       private RequestCase(int value) {
@@ -180,7 +210,8 @@ public final class Protocol {
       public static RequestCase forNumber(int value) {
         switch (value) {
           case 1: return SENDSORTREQUEST;
-          case 2: return DEAD;
+          case 2: return SENDCOUNTREQUEST;
+          case 3: return DEAD;
           case 0: return REQUEST_NOT_SET;
           default: return null;
         }
@@ -224,29 +255,57 @@ public final class Protocol {
       return ru.ifmo.java.chat.protocol.Protocol.SendSortRequest.getDefaultInstance();
     }
 
-    public static final int DEAD_FIELD_NUMBER = 2;
+    public static final int SENDCOUNTREQUEST_FIELD_NUMBER = 2;
     /**
-     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
-     * @return Whether the dead field is set.
+     * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+     * @return Whether the sendCountRequest field is set.
      */
-    public boolean hasDead() {
+    public boolean hasSendCountRequest() {
       return requestCase_ == 2;
     }
     /**
-     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+     * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+     * @return The sendCountRequest.
+     */
+    public ru.ifmo.java.chat.protocol.Protocol.SendCountRequest getSendCountRequest() {
+      if (requestCase_ == 2) {
+         return (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_;
+      }
+      return ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance();
+    }
+    /**
+     * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+     */
+    public ru.ifmo.java.chat.protocol.Protocol.SendCountRequestOrBuilder getSendCountRequestOrBuilder() {
+      if (requestCase_ == 2) {
+         return (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_;
+      }
+      return ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance();
+    }
+
+    public static final int DEAD_FIELD_NUMBER = 3;
+    /**
+     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
+     * @return Whether the dead field is set.
+     */
+    public boolean hasDead() {
+      return requestCase_ == 3;
+    }
+    /**
+     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
      * @return The dead.
      */
     public ru.ifmo.java.chat.protocol.Protocol.Dead getDead() {
-      if (requestCase_ == 2) {
+      if (requestCase_ == 3) {
          return (ru.ifmo.java.chat.protocol.Protocol.Dead) request_;
       }
       return ru.ifmo.java.chat.protocol.Protocol.Dead.getDefaultInstance();
     }
     /**
-     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+     * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
      */
     public ru.ifmo.java.chat.protocol.Protocol.DeadOrBuilder getDeadOrBuilder() {
-      if (requestCase_ == 2) {
+      if (requestCase_ == 3) {
          return (ru.ifmo.java.chat.protocol.Protocol.Dead) request_;
       }
       return ru.ifmo.java.chat.protocol.Protocol.Dead.getDefaultInstance();
@@ -270,7 +329,10 @@ public final class Protocol {
         output.writeMessage(1, (ru.ifmo.java.chat.protocol.Protocol.SendSortRequest) request_);
       }
       if (requestCase_ == 2) {
-        output.writeMessage(2, (ru.ifmo.java.chat.protocol.Protocol.Dead) request_);
+        output.writeMessage(2, (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_);
+      }
+      if (requestCase_ == 3) {
+        output.writeMessage(3, (ru.ifmo.java.chat.protocol.Protocol.Dead) request_);
       }
       unknownFields.writeTo(output);
     }
@@ -287,7 +349,11 @@ public final class Protocol {
       }
       if (requestCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (ru.ifmo.java.chat.protocol.Protocol.Dead) request_);
+          .computeMessageSize(2, (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_);
+      }
+      if (requestCase_ == 3) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, (ru.ifmo.java.chat.protocol.Protocol.Dead) request_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -311,6 +377,10 @@ public final class Protocol {
               .equals(other.getSendSortRequest())) return false;
           break;
         case 2:
+          if (!getSendCountRequest()
+              .equals(other.getSendCountRequest())) return false;
+          break;
+        case 3:
           if (!getDead()
               .equals(other.getDead())) return false;
           break;
@@ -334,6 +404,10 @@ public final class Protocol {
           hash = (53 * hash) + getSendSortRequest().hashCode();
           break;
         case 2:
+          hash = (37 * hash) + SENDCOUNTREQUEST_FIELD_NUMBER;
+          hash = (53 * hash) + getSendCountRequest().hashCode();
+          break;
+        case 3:
           hash = (37 * hash) + DEAD_FIELD_NUMBER;
           hash = (53 * hash) + getDead().hashCode();
           break;
@@ -509,6 +583,13 @@ public final class Protocol {
           }
         }
         if (requestCase_ == 2) {
+          if (sendCountRequestBuilder_ == null) {
+            result.request_ = request_;
+          } else {
+            result.request_ = sendCountRequestBuilder_.build();
+          }
+        }
+        if (requestCase_ == 3) {
           if (deadBuilder_ == null) {
             result.request_ = request_;
           } else {
@@ -567,6 +648,10 @@ public final class Protocol {
         switch (other.getRequestCase()) {
           case SENDSORTREQUEST: {
             mergeSendSortRequest(other.getSendSortRequest());
+            break;
+          }
+          case SENDCOUNTREQUEST: {
+            mergeSendCountRequest(other.getSendCountRequest());
             break;
           }
           case DEAD: {
@@ -760,33 +845,171 @@ public final class Protocol {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          ru.ifmo.java.chat.protocol.Protocol.Dead, ru.ifmo.java.chat.protocol.Protocol.Dead.Builder, ru.ifmo.java.chat.protocol.Protocol.DeadOrBuilder> deadBuilder_;
+          ru.ifmo.java.chat.protocol.Protocol.SendCountRequest, ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.Builder, ru.ifmo.java.chat.protocol.Protocol.SendCountRequestOrBuilder> sendCountRequestBuilder_;
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
-       * @return Whether the dead field is set.
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       * @return Whether the sendCountRequest field is set.
        */
-      public boolean hasDead() {
+      public boolean hasSendCountRequest() {
         return requestCase_ == 2;
       }
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       * @return The sendCountRequest.
+       */
+      public ru.ifmo.java.chat.protocol.Protocol.SendCountRequest getSendCountRequest() {
+        if (sendCountRequestBuilder_ == null) {
+          if (requestCase_ == 2) {
+            return (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_;
+          }
+          return ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance();
+        } else {
+          if (requestCase_ == 2) {
+            return sendCountRequestBuilder_.getMessage();
+          }
+          return ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       */
+      public Builder setSendCountRequest(ru.ifmo.java.chat.protocol.Protocol.SendCountRequest value) {
+        if (sendCountRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          request_ = value;
+          onChanged();
+        } else {
+          sendCountRequestBuilder_.setMessage(value);
+        }
+        requestCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       */
+      public Builder setSendCountRequest(
+          ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.Builder builderForValue) {
+        if (sendCountRequestBuilder_ == null) {
+          request_ = builderForValue.build();
+          onChanged();
+        } else {
+          sendCountRequestBuilder_.setMessage(builderForValue.build());
+        }
+        requestCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       */
+      public Builder mergeSendCountRequest(ru.ifmo.java.chat.protocol.Protocol.SendCountRequest value) {
+        if (sendCountRequestBuilder_ == null) {
+          if (requestCase_ == 2 &&
+              request_ != ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance()) {
+            request_ = ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.newBuilder((ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            request_ = value;
+          }
+          onChanged();
+        } else {
+          if (requestCase_ == 2) {
+            sendCountRequestBuilder_.mergeFrom(value);
+          }
+          sendCountRequestBuilder_.setMessage(value);
+        }
+        requestCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       */
+      public Builder clearSendCountRequest() {
+        if (sendCountRequestBuilder_ == null) {
+          if (requestCase_ == 2) {
+            requestCase_ = 0;
+            request_ = null;
+            onChanged();
+          }
+        } else {
+          if (requestCase_ == 2) {
+            requestCase_ = 0;
+            request_ = null;
+          }
+          sendCountRequestBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       */
+      public ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.Builder getSendCountRequestBuilder() {
+        return getSendCountRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       */
+      public ru.ifmo.java.chat.protocol.Protocol.SendCountRequestOrBuilder getSendCountRequestOrBuilder() {
+        if ((requestCase_ == 2) && (sendCountRequestBuilder_ != null)) {
+          return sendCountRequestBuilder_.getMessageOrBuilder();
+        } else {
+          if (requestCase_ == 2) {
+            return (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_;
+          }
+          return ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.SendCountRequest sendCountRequest = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          ru.ifmo.java.chat.protocol.Protocol.SendCountRequest, ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.Builder, ru.ifmo.java.chat.protocol.Protocol.SendCountRequestOrBuilder> 
+          getSendCountRequestFieldBuilder() {
+        if (sendCountRequestBuilder_ == null) {
+          if (!(requestCase_ == 2)) {
+            request_ = ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance();
+          }
+          sendCountRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              ru.ifmo.java.chat.protocol.Protocol.SendCountRequest, ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.Builder, ru.ifmo.java.chat.protocol.Protocol.SendCountRequestOrBuilder>(
+                  (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) request_,
+                  getParentForChildren(),
+                  isClean());
+          request_ = null;
+        }
+        requestCase_ = 2;
+        onChanged();;
+        return sendCountRequestBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          ru.ifmo.java.chat.protocol.Protocol.Dead, ru.ifmo.java.chat.protocol.Protocol.Dead.Builder, ru.ifmo.java.chat.protocol.Protocol.DeadOrBuilder> deadBuilder_;
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
+       * @return Whether the dead field is set.
+       */
+      public boolean hasDead() {
+        return requestCase_ == 3;
+      }
+      /**
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
        * @return The dead.
        */
       public ru.ifmo.java.chat.protocol.Protocol.Dead getDead() {
         if (deadBuilder_ == null) {
-          if (requestCase_ == 2) {
+          if (requestCase_ == 3) {
             return (ru.ifmo.java.chat.protocol.Protocol.Dead) request_;
           }
           return ru.ifmo.java.chat.protocol.Protocol.Dead.getDefaultInstance();
         } else {
-          if (requestCase_ == 2) {
+          if (requestCase_ == 3) {
             return deadBuilder_.getMessage();
           }
           return ru.ifmo.java.chat.protocol.Protocol.Dead.getDefaultInstance();
         }
       }
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
        */
       public Builder setDead(ru.ifmo.java.chat.protocol.Protocol.Dead value) {
         if (deadBuilder_ == null) {
@@ -798,11 +1021,11 @@ public final class Protocol {
         } else {
           deadBuilder_.setMessage(value);
         }
-        requestCase_ = 2;
+        requestCase_ = 3;
         return this;
       }
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
        */
       public Builder setDead(
           ru.ifmo.java.chat.protocol.Protocol.Dead.Builder builderForValue) {
@@ -812,15 +1035,15 @@ public final class Protocol {
         } else {
           deadBuilder_.setMessage(builderForValue.build());
         }
-        requestCase_ = 2;
+        requestCase_ = 3;
         return this;
       }
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
        */
       public Builder mergeDead(ru.ifmo.java.chat.protocol.Protocol.Dead value) {
         if (deadBuilder_ == null) {
-          if (requestCase_ == 2 &&
+          if (requestCase_ == 3 &&
               request_ != ru.ifmo.java.chat.protocol.Protocol.Dead.getDefaultInstance()) {
             request_ = ru.ifmo.java.chat.protocol.Protocol.Dead.newBuilder((ru.ifmo.java.chat.protocol.Protocol.Dead) request_)
                 .mergeFrom(value).buildPartial();
@@ -829,26 +1052,26 @@ public final class Protocol {
           }
           onChanged();
         } else {
-          if (requestCase_ == 2) {
+          if (requestCase_ == 3) {
             deadBuilder_.mergeFrom(value);
           }
           deadBuilder_.setMessage(value);
         }
-        requestCase_ = 2;
+        requestCase_ = 3;
         return this;
       }
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
        */
       public Builder clearDead() {
         if (deadBuilder_ == null) {
-          if (requestCase_ == 2) {
+          if (requestCase_ == 3) {
             requestCase_ = 0;
             request_ = null;
             onChanged();
           }
         } else {
-          if (requestCase_ == 2) {
+          if (requestCase_ == 3) {
             requestCase_ = 0;
             request_ = null;
           }
@@ -857,32 +1080,32 @@ public final class Protocol {
         return this;
       }
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
        */
       public ru.ifmo.java.chat.protocol.Protocol.Dead.Builder getDeadBuilder() {
         return getDeadFieldBuilder().getBuilder();
       }
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
        */
       public ru.ifmo.java.chat.protocol.Protocol.DeadOrBuilder getDeadOrBuilder() {
-        if ((requestCase_ == 2) && (deadBuilder_ != null)) {
+        if ((requestCase_ == 3) && (deadBuilder_ != null)) {
           return deadBuilder_.getMessageOrBuilder();
         } else {
-          if (requestCase_ == 2) {
+          if (requestCase_ == 3) {
             return (ru.ifmo.java.chat.protocol.Protocol.Dead) request_;
           }
           return ru.ifmo.java.chat.protocol.Protocol.Dead.getDefaultInstance();
         }
       }
       /**
-       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 2;</code>
+       * <code>.ru.ifmo.java.chat.protocol.Dead dead = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           ru.ifmo.java.chat.protocol.Protocol.Dead, ru.ifmo.java.chat.protocol.Protocol.Dead.Builder, ru.ifmo.java.chat.protocol.Protocol.DeadOrBuilder> 
           getDeadFieldBuilder() {
         if (deadBuilder_ == null) {
-          if (!(requestCase_ == 2)) {
+          if (!(requestCase_ == 3)) {
             request_ = ru.ifmo.java.chat.protocol.Protocol.Dead.getDefaultInstance();
           }
           deadBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -892,7 +1115,7 @@ public final class Protocol {
                   isClean());
           request_ = null;
         }
-        requestCase_ = 2;
+        requestCase_ = 3;
         onChanged();;
         return deadBuilder_;
       }
@@ -944,6 +1167,492 @@ public final class Protocol {
 
     @java.lang.Override
     public ru.ifmo.java.chat.protocol.Protocol.SortRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SendCountRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ru.ifmo.java.chat.protocol.SendCountRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 clientCount = 1;</code>
+     * @return The clientCount.
+     */
+    int getClientCount();
+  }
+  /**
+   * Protobuf type {@code ru.ifmo.java.chat.protocol.SendCountRequest}
+   */
+  public  static final class SendCountRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ru.ifmo.java.chat.protocol.SendCountRequest)
+      SendCountRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SendCountRequest.newBuilder() to construct.
+    private SendCountRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SendCountRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SendCountRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SendCountRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              clientCount_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ru.ifmo.java.chat.protocol.Protocol.internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ru.ifmo.java.chat.protocol.Protocol.internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.class, ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.Builder.class);
+    }
+
+    public static final int CLIENTCOUNT_FIELD_NUMBER = 1;
+    private int clientCount_;
+    /**
+     * <code>int32 clientCount = 1;</code>
+     * @return The clientCount.
+     */
+    public int getClientCount() {
+      return clientCount_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (clientCount_ != 0) {
+        output.writeInt32(1, clientCount_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (clientCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, clientCount_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ru.ifmo.java.chat.protocol.Protocol.SendCountRequest)) {
+        return super.equals(obj);
+      }
+      ru.ifmo.java.chat.protocol.Protocol.SendCountRequest other = (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) obj;
+
+      if (getClientCount()
+          != other.getClientCount()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CLIENTCOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getClientCount();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ru.ifmo.java.chat.protocol.Protocol.SendCountRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ru.ifmo.java.chat.protocol.SendCountRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ru.ifmo.java.chat.protocol.SendCountRequest)
+        ru.ifmo.java.chat.protocol.Protocol.SendCountRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ru.ifmo.java.chat.protocol.Protocol.internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ru.ifmo.java.chat.protocol.Protocol.internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.class, ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.Builder.class);
+      }
+
+      // Construct using ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        clientCount_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ru.ifmo.java.chat.protocol.Protocol.internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public ru.ifmo.java.chat.protocol.Protocol.SendCountRequest getDefaultInstanceForType() {
+        return ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ru.ifmo.java.chat.protocol.Protocol.SendCountRequest build() {
+        ru.ifmo.java.chat.protocol.Protocol.SendCountRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ru.ifmo.java.chat.protocol.Protocol.SendCountRequest buildPartial() {
+        ru.ifmo.java.chat.protocol.Protocol.SendCountRequest result = new ru.ifmo.java.chat.protocol.Protocol.SendCountRequest(this);
+        result.clientCount_ = clientCount_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) {
+          return mergeFrom((ru.ifmo.java.chat.protocol.Protocol.SendCountRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ru.ifmo.java.chat.protocol.Protocol.SendCountRequest other) {
+        if (other == ru.ifmo.java.chat.protocol.Protocol.SendCountRequest.getDefaultInstance()) return this;
+        if (other.getClientCount() != 0) {
+          setClientCount(other.getClientCount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        ru.ifmo.java.chat.protocol.Protocol.SendCountRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (ru.ifmo.java.chat.protocol.Protocol.SendCountRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int clientCount_ ;
+      /**
+       * <code>int32 clientCount = 1;</code>
+       * @return The clientCount.
+       */
+      public int getClientCount() {
+        return clientCount_;
+      }
+      /**
+       * <code>int32 clientCount = 1;</code>
+       * @param value The clientCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClientCount(int value) {
+        
+        clientCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 clientCount = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClientCount() {
+        
+        clientCount_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ru.ifmo.java.chat.protocol.SendCountRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:ru.ifmo.java.chat.protocol.SendCountRequest)
+    private static final ru.ifmo.java.chat.protocol.Protocol.SendCountRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ru.ifmo.java.chat.protocol.Protocol.SendCountRequest();
+    }
+
+    public static ru.ifmo.java.chat.protocol.Protocol.SendCountRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SendCountRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SendCountRequest>() {
+      @java.lang.Override
+      public SendCountRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SendCountRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SendCountRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SendCountRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ru.ifmo.java.chat.protocol.Protocol.SendCountRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1669,6 +2378,12 @@ public final class Protocol {
      * @return The all.
      */
     long getAll();
+
+    /**
+     * <code>int64 reqs = 5;</code>
+     * @return The reqs.
+     */
+    long getReqs();
   }
   /**
    * Protobuf type {@code ru.ifmo.java.chat.protocol.SendSortResponse}
@@ -1751,6 +2466,11 @@ public final class Protocol {
             case 32: {
 
               all_ = input.readInt64();
+              break;
+            }
+            case 40: {
+
+              reqs_ = input.readInt64();
               break;
             }
             default: {
@@ -1845,6 +2565,16 @@ public final class Protocol {
       return all_;
     }
 
+    public static final int REQS_FIELD_NUMBER = 5;
+    private long reqs_;
+    /**
+     * <code>int64 reqs = 5;</code>
+     * @return The reqs.
+     */
+    public long getReqs() {
+      return reqs_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1875,6 +2605,9 @@ public final class Protocol {
       }
       if (all_ != 0L) {
         output.writeInt64(4, all_);
+      }
+      if (reqs_ != 0L) {
+        output.writeInt64(5, reqs_);
       }
       unknownFields.writeTo(output);
     }
@@ -1911,6 +2644,10 @@ public final class Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, all_);
       }
+      if (reqs_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, reqs_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1934,6 +2671,8 @@ public final class Protocol {
           != other.getSort()) return false;
       if (getAll()
           != other.getAll()) return false;
+      if (getReqs()
+          != other.getReqs()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1957,6 +2696,9 @@ public final class Protocol {
       hash = (37 * hash) + ALL_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getAll());
+      hash = (37 * hash) + REQS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getReqs());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2098,6 +2840,8 @@ public final class Protocol {
 
         all_ = 0L;
 
+        reqs_ = 0L;
+
         return this;
       }
 
@@ -2133,6 +2877,7 @@ public final class Protocol {
         result.list_ = list_;
         result.sort_ = sort_;
         result.all_ = all_;
+        result.reqs_ = reqs_;
         onBuilt();
         return result;
       }
@@ -2199,6 +2944,9 @@ public final class Protocol {
         }
         if (other.getAll() != 0L) {
           setAll(other.getAll());
+        }
+        if (other.getReqs() != 0L) {
+          setReqs(other.getReqs());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2395,6 +3143,36 @@ public final class Protocol {
       public Builder clearAll() {
         
         all_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long reqs_ ;
+      /**
+       * <code>int64 reqs = 5;</code>
+       * @return The reqs.
+       */
+      public long getReqs() {
+        return reqs_;
+      }
+      /**
+       * <code>int64 reqs = 5;</code>
+       * @param value The reqs to set.
+       * @return This builder for chaining.
+       */
+      public Builder setReqs(long value) {
+        
+        reqs_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 reqs = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearReqs() {
+        
+        reqs_ = 0L;
         onChanged();
         return this;
       }
@@ -2875,6 +3653,11 @@ public final class Protocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ru_ifmo_java_chat_protocol_SortRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ru_ifmo_java_chat_protocol_SendSortRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -2899,14 +3682,17 @@ public final class Protocol {
   static {
     java.lang.String[] descriptorData = {
       "\n\016protocol.proto\022\032ru.ifmo.java.chat.prot" +
-      "ocol\"\222\001\n\013SortRequest\022F\n\017sendSortRequest\030" +
+      "ocol\"\334\001\n\013SortRequest\022F\n\017sendSortRequest\030" +
       "\001 \001(\0132+.ru.ifmo.java.chat.protocol.SendS" +
-      "ortRequestH\000\0220\n\004dead\030\002 \001(\0132 .ru.ifmo.jav" +
-      "a.chat.protocol.DeadH\000B\t\n\007request\".\n\017Sen" +
-      "dSortRequest\022\r\n\005count\030\001 \001(\005\022\014\n\004list\030\002 \003(" +
-      "\005\"J\n\020SendSortResponse\022\r\n\005count\030\001 \001(\005\022\014\n\004" +
-      "list\030\002 \003(\005\022\014\n\004sort\030\003 \001(\003\022\013\n\003all\030\004 \001(\003\"\006\n" +
-      "\004Deadb\006proto3"
+      "ortRequestH\000\022H\n\020sendCountRequest\030\002 \001(\0132," +
+      ".ru.ifmo.java.chat.protocol.SendCountReq" +
+      "uestH\000\0220\n\004dead\030\003 \001(\0132 .ru.ifmo.java.chat" +
+      ".protocol.DeadH\000B\t\n\007request\"\'\n\020SendCount" +
+      "Request\022\023\n\013clientCount\030\001 \001(\005\".\n\017SendSort" +
+      "Request\022\r\n\005count\030\001 \001(\005\022\014\n\004list\030\002 \003(\005\"X\n\020" +
+      "SendSortResponse\022\r\n\005count\030\001 \001(\005\022\014\n\004list\030" +
+      "\002 \003(\005\022\014\n\004sort\030\003 \001(\003\022\013\n\003all\030\004 \001(\003\022\014\n\004reqs" +
+      "\030\005 \001(\003\"\006\n\004Deadb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2917,21 +3703,27 @@ public final class Protocol {
     internal_static_ru_ifmo_java_chat_protocol_SortRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ru_ifmo_java_chat_protocol_SortRequest_descriptor,
-        new java.lang.String[] { "SendSortRequest", "Dead", "Request", });
-    internal_static_ru_ifmo_java_chat_protocol_SendSortRequest_descriptor =
+        new java.lang.String[] { "SendSortRequest", "SendCountRequest", "Dead", "Request", });
+    internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ru_ifmo_java_chat_protocol_SendCountRequest_descriptor,
+        new java.lang.String[] { "ClientCount", });
+    internal_static_ru_ifmo_java_chat_protocol_SendSortRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_ru_ifmo_java_chat_protocol_SendSortRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ru_ifmo_java_chat_protocol_SendSortRequest_descriptor,
         new java.lang.String[] { "Count", "List", });
     internal_static_ru_ifmo_java_chat_protocol_SendSortResponse_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_ru_ifmo_java_chat_protocol_SendSortResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ru_ifmo_java_chat_protocol_SendSortResponse_descriptor,
-        new java.lang.String[] { "Count", "List", "Sort", "All", });
+        new java.lang.String[] { "Count", "List", "Sort", "All", "Reqs", });
     internal_static_ru_ifmo_java_chat_protocol_Dead_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_ru_ifmo_java_chat_protocol_Dead_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ru_ifmo_java_chat_protocol_Dead_descriptor,

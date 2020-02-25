@@ -8,33 +8,47 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 public class ServerWorker implements Runnable {
     private final Socket socket;
     private final InputStream input;
     private final OutputStream output;
     private long timeForSort, timeAll;
+    private CyclicBarrier bar;
+    private Integer need;
+    int reqCount;
 
-    public ServerWorker(Socket socket) throws IOException {
+    public ServerWorker(Socket socket, Server server) throws IOException, InterruptedException, BrokenBarrierException {
         this.socket = socket;
         input = socket.getInputStream();
         output = socket.getOutputStream();
+        this.bar = server.BARRIER;
+        reqCount = 0;
+        this.need = server.needToStoreStat;
     }
 
     @Override
     public void run() {
+        try {bar.await();
+        } catch (Exception e) { System.out.println("probs");}
+
         try {
-            while (true) {
+            while (!socket.isClosed()) {
                 long start = System.currentTimeMillis();
                 Protocol.SortRequest request = receiveRequest();
+                //System.out.println("REc ok");
                 if (request.hasSendSortRequest()) {
+                    reqCount += need;
                     processSendSort(request.getSendSortRequest(), start);
+
                 } else if (request.hasDead()) {
                     break;
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            need = 0;
         } finally {
             try {
                 socket.close();
@@ -55,8 +69,8 @@ public class ServerWorker implements Runnable {
         long finish = System.currentTimeMillis();
 
         Protocol.SendSortResponse.newBuilder().setCount(request.getCount())
-                .addAllList(Arrays.asList(sorted)).setSort(finish - startSort)
-                .setAll(System.currentTimeMillis() - start)
+                .addAllList(Arrays.asList(sorted)).setSort(need * (finish - startSort))
+                .setAll(need *(System.currentTimeMillis() - start)).setReqs(reqCount)
                 .build().writeDelimitedTo(output);
     }
 }

@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 
 public class ServerWorker2 implements Runnable {
@@ -17,29 +18,39 @@ public class ServerWorker2 implements Runnable {
     private long timeForSort, timeAll;
     private final ExecutorService pool;
     private final ExecutorService outThread;
+    private CyclicBarrier bar;
+    private Integer need;
+    private int reqCount;
 
-    public ServerWorker2(Socket socket, ExecutorService pool, ExecutorService outThread) throws IOException {
+    public ServerWorker2(Socket socket, ExecutorService pool, ExecutorService outThread, Server2 server) throws IOException {
         this.socket = socket;
         input = socket.getInputStream();
         output = socket.getOutputStream();
         this.pool = pool;
         this.outThread = outThread;
+        this.bar = server.BARRIER;
+        need = server.need;
+        reqCount = 0;
     }
 
     @Override
     public void run() {
+        try {bar.await();
+        } catch (Exception e) { System.out.println("probs");}
         try {
             while (true) {
                 long start = System.currentTimeMillis();
                 Protocol.SortRequest request = receiveRequest();
                 if (request.hasSendSortRequest()) {
+                    reqCount += need;
                     processSendSort(request.getSendSortRequest(), start);
+
                 } else if (request.hasDead()) {
                     break;
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            need = 0;
         } finally {
             try {
                 socket.close();
@@ -90,8 +101,8 @@ public class ServerWorker2 implements Runnable {
         public void run() {
             try {
                 Protocol.SendSortResponse.newBuilder().setCount(request.getCount())
-                        .addAllList(Arrays.asList(res)).setSort(sortTime)
-                        .setAll(System.currentTimeMillis() - start)
+                        .addAllList(Arrays.asList(res)).setSort(need * sortTime)
+                        .setAll(need * (System.currentTimeMillis() - start)).setReqs(reqCount)
                         .build().writeDelimitedTo(output);
             } catch (IOException e) {
                 System.out.println("Write socket problem " + e.getMessage());

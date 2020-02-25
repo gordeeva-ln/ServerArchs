@@ -5,8 +5,13 @@ package ru.ifmo.java.chat.protocol;
 message SortRequest {
     oneof request {
         SendSortRequest sendSortRequest = 1;
-        Dead dead = 2;
+        SendCountRequest sendCountRequest = 2;
+        Dead dead = 3;
     }
+}
+
+message SendCountRequest {
+    int32 clientCount = 1;
 }
 
 message SendSortRequest {
@@ -20,6 +25,7 @@ message SendSortResponse {
 
     int64 sort = 3;
     int64 all = 4;
+    int64 reqs = 5;
 }
 
 message Dead {}
